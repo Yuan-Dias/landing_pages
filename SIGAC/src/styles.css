@@ -1,0 +1,62 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 3px); --radius-md: calc(var(--radius) - 1px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 5px);
+  --font-sans: "Manrope", sans-serif; --font-display: "Manrope", sans-serif;
+  --color-background: var(--background); --color-foreground: var(--foreground); --color-card: var(--card); --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover); --color-popover-foreground: var(--popover-foreground); --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--secondary-foreground); --color-muted: var(--muted); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--accent-foreground); --color-destructive: var(--destructive); --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border); --color-input: var(--input); --color-ring: var(--ring); --color-soft: var(--soft); --color-soft-strong: var(--soft-strong);
+  --color-surface: var(--surface); --color-section: var(--section); --color-danger-soft: var(--danger-soft); --color-warning: var(--warning);
+  --color-info: var(--info); --color-info-soft: var(--info-soft); --color-footer-muted: var(--footer-muted); --color-hero-line: var(--hero-line);
+  --color-map: var(--map); --color-map-line: var(--map-line); --color-map-grid: var(--map-grid); --color-map-land: var(--map-land);
+  --color-whatsapp: var(--whatsapp); --color-chat: var(--chat); --color-chat-user: var(--chat-user); --color-chat-user-foreground: var(--chat-user-foreground); --color-cta-line: var(--cta-line);
+}
+
+:root {
+  --radius: .5rem;
+  --background: oklch(0.985 0.008 145); --foreground: oklch(0.22 0.035 157); --card: oklch(1 0 0); --card-foreground: oklch(0.22 0.035 157);
+  --popover: oklch(1 0 0); --popover-foreground: oklch(0.22 0.035 157); --primary: oklch(0.35 0.09 155); --primary-foreground: oklch(0.985 0.008 145);
+  --secondary: oklch(0.48 0.11 155); --secondary-foreground: oklch(0.985 0.008 145); --muted: oklch(0.94 0.022 150); --muted-foreground: oklch(0.43 0.035 157);
+  --accent: oklch(0.70 0.14 157); --accent-foreground: oklch(0.25 0.06 155); --destructive: oklch(0.58 0.22 29); --destructive-foreground: oklch(0.985 0.008 145);
+  --border: oklch(0.88 0.025 150); --input: oklch(0.82 0.03 150); --ring: oklch(0.62 0.13 157);
+  --soft: oklch(0.94 0.052 151); --soft-strong: oklch(0.85 0.09 151); --surface: oklch(1 0 0); --section: oklch(0.97 0.025 149);
+  --danger-soft: oklch(0.95 0.045 65); --warning: oklch(0.69 0.15 55); --info: oklch(0.66 0.13 220); --info-soft: oklch(0.93 0.04 220);
+  --footer-muted: oklch(0.87 0.045 151); --hero-line: oklch(1 0 0 / 16%); --cta-line: oklch(1 0 0 / 25%);
+  --map: oklch(0.93 0.028 180); --map-line: oklch(0.61 0.09 205); --map-grid: oklch(0.66 0.05 180 / 22%); --map-land: oklch(0.83 0.08 151);
+  --whatsapp: oklch(0.74 0.19 145); --chat: oklch(0.94 0.012 115); --chat-user: oklch(0.89 0.1 145); --chat-user-foreground: oklch(0.24 0.05 155);
+  --shadow-card: 0 8px 28px oklch(0.25 0.04 155 / 8%); --shadow-card-hover: 0 18px 40px oklch(0.25 0.06 155 / 14%); --shadow-dashboard: 0 30px 80px oklch(0.15 0.05 155 / 28%);
+  --hero: linear-gradient(128deg, oklch(0.30 0.09 155), oklch(0.47 0.11 155));
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background-color: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); }
+  button, a { letter-spacing: 0; }
+  ::selection { background: var(--accent); color: var(--primary); }
+}
+
+@utility bg-hero { background: var(--hero); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+@utility shadow-card-hover { box-shadow: var(--shadow-card-hover); }
+@utility shadow-dashboard { box-shadow: var(--shadow-dashboard); }
+@utility pattern-grid { background-image: linear-gradient(var(--hero-line) 1px, transparent 1px), linear-gradient(90deg, var(--hero-line) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(to bottom, black, transparent 80%); }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.delay-150 { transition-delay: .15s; }
+.typing-dots::after { content: "•••"; display: inline-block; width: 1.2rem; overflow: hidden; animation: typing 1.5s steps(4,end) infinite; }
+.animate-ping-soft { animation: ping-soft 2s ease-out infinite; }
+.animate-spin-slow { animation: spin 3s linear infinite; }
+.animate-progress { transform-origin: left; animation: progress 2s ease-out both; }
+@keyframes typing { 0%{width:0} 100%{width:1.2rem} }
+@keyframes ping-soft { 0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,var(--accent) 45%,transparent)} 50%{box-shadow:0 0 0 7px transparent} }
+@keyframes spin { to{transform:rotate(360deg)} }
+@keyframes progress { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.animate-ping-soft,.animate-spin-slow,.animate-progress,.typing-dots::after{animation:none} }
