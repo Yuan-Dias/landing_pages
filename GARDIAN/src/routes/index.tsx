@@ -9,42 +9,9 @@ import {
   Brand, DemoForm, FlowTimeline, Header, HeroDashboard, IconBadge,
   MockupImage, ProfileCard, Reveal, RiskZoneMap, SectionTitle, WeatherWidget, icons,
 } from "@/components/gardian";
-import { MOCKUPS, OG_IMAGE } from "@/config/assets";
+import { MOCKUPS } from "@/config/assets";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Gardian — Monitoramento e Gestão de Riscos Municipais" },
-      {
-        name: "description",
-        content:
-            "Sistema integrado para monitoramento climático, gestão de zonas de risco e prevenção de desastres municipais.",
-      },
-      { property: "og:title", content: "Gardian — Gestão de Riscos Municipais" },
-      {
-        property: "og:description",
-        content: "Uma visão integrada do território para agir antes do desastre.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:image", content: OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: OG_IMAGE },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          name: "Gardian",
-          applicationCategory: "GovernmentApplication",
-          operatingSystem: "Web",
-          description: "Sistema de Monitoramento e Gestão de Riscos Municipais",
-        }),
-      },
-    ],
-  }),
   component: Index,
 });
 

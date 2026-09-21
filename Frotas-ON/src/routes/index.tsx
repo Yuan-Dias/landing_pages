@@ -35,25 +35,6 @@ import { FormEvent, useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  head: () => ({
-    meta: [
-      { title: "Frotas ON | Gestão inteligente de frotas públicas" },
-      {
-        name: "description",
-        content:
-          "Centralize veículos, abastecimentos, despesas e manutenções da sua prefeitura com o Frotas ON.",
-      },
-      { property: "og:title", content: "Frotas ON | Gestão inteligente de frotas públicas" },
-      {
-        property: "og:description",
-        content: "Mais controle, economia e transparência para a frota do seu município.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
 });
 
 const navItems = [
