@@ -9,7 +9,7 @@ import {
   Brand, DemoForm, FlowTimeline, Header, HeroDashboard, IconBadge,
   MockupImage, ProfileCard, Reveal, RiskZoneMap, SectionTitle, WeatherWidget, icons,
 } from "@/components/gardian";
-import { MOCKUPS } from "@/config/assets";
+import { BRAND_LOGO_SRC, MOCKUPS } from "@/config/assets";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -101,8 +101,12 @@ function Index() {
                   Território monitorado em tempo real
                 </div>
 
-                <h1 className="text-5xl font-extrabold leading-none sm:text-6xl lg:text-7xl">
-                  Gardian
+                <h1 className="max-w-full leading-none">
+                  <img
+                    src={BRAND_LOGO_SRC}
+                    alt="GARDIAN — Defesa Civil"
+                    className="h-auto w-[min(100%,22rem)] object-contain sm:w-[25rem]"
+                  />
                 </h1>
 
                 <p className="mt-5 max-w-xl text-xl font-bold leading-snug sm:text-2xl">
@@ -363,29 +367,12 @@ function Index() {
               </Reveal>
 
               <Reveal>
-                <div className="relative pb-8">
+                <div className="relative">
                   <MockupImage
                       src={MOCKUPS.riskMap}
                       alt="Mapa do Gardian com zonas municipais classificadas por risco"
                       fallback={<RiskZoneMap />}
                   />
-                  <div className="absolute -bottom-8 left-6 right-6 rounded-lg border border-border bg-card p-4 shadow-lift">
-                    <div className="mb-2 flex items-center justify-between">
-                    <span className="text-xs font-bold text-primary">
-                      Precipitação — últimas 24h
-                    </span>
-                      <span className="text-xs text-muted-foreground">18 mm</span>
-                    </div>
-                    <div className="flex h-12 items-end gap-2" aria-hidden="true">
-                      {[22, 35, 28, 44, 66, 51, 80, 62, 40, 32, 24, 18].map((h, i) => (
-                          <span
-                              key={i}
-                              className="flex-1 rounded-t-sm bg-live"
-                              style={{ height: `${h}%`, opacity: 0.45 + i * 0.035 }}
-                          />
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </Reveal>
             </div>
