@@ -9,7 +9,6 @@ import {
   ChevronRight,
   CircleDollarSign,
   ClipboardCheck,
-  Clock3,
   Facebook,
   FileClock,
   Fuel,
@@ -22,10 +21,8 @@ import {
   MapPin,
   Menu,
   PiggyBank,
-  Settings,
   ShieldCheck,
   SlidersHorizontal,
-  Truck,
   UsersRound,
   Wrench,
   X,
@@ -87,8 +84,7 @@ function Button({ variant = "primary", className = "", children, ...props }: But
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
     <a href="#inicio" className={`brand ${inverse ? "brand-inverse" : ""}`} aria-label="Frotas ON — início">
-      <span className="brand-mark"><Car aria-hidden="true" /></span>
-      <span>Frotas <strong>ON</strong></span>
+      <img src="/images/logo_frotason.png" alt="Frotas ON" className="brand-logo" />
     </a>
   );
 }
@@ -109,44 +105,12 @@ function IconBadge({ icon: Icon }: { icon: LucideIcon }) {
 
 function DashboardMockup() {
   return (
-    <div className="dashboard-shell" aria-label="Prévia do painel de gestão do Frotas ON">
-      <div className="dashboard-top">
-        <div className="dashboard-brand"><span /><span>Visão geral da frota</span></div>
-        <div className="dashboard-user">GM</div>
-      </div>
-      <div className="dashboard-body">
-        <aside className="dashboard-menu" aria-hidden="true">
-          {[Car, CalendarCheck, Fuel, Wrench, BarChart3].map((Icon, index) => <Icon key={index} />)}
-        </aside>
-        <div className="dashboard-content">
-          <div className="dashboard-heading">
-            <div><small>Prefeitura Municipal</small><strong>Resumo operacional</strong></div>
-            <span><span className="live-dot" /> Atualizado agora</span>
-          </div>
-          <div className="dashboard-stats">
-            <div><span className="stat-icon"><Car /></span><p>Veículos ativos</p><strong>128</strong><small>+6 neste mês</small></div>
-            <div><span className="stat-icon"><CalendarCheck /></span><p>Agendamentos</p><strong>24</strong><small>8 para hoje</small></div>
-            <div><span className="stat-icon"><Wrench /></span><p>Em manutenção</p><strong>07</strong><small>Dentro do previsto</small></div>
-          </div>
-          <div className="dashboard-lower">
-            <div className="chart-panel">
-              <div className="panel-label"><strong>Despesas da frota</strong><span>Últimos 6 meses</span></div>
-              <div className="chart" aria-hidden="true">
-                {[44, 63, 51, 78, 68, 87].map((height, index) => <i key={index} style={{ height: `${height}%` }} />)}
-              </div>
-              <div className="chart-months"><span>JAN</span><span>FEV</span><span>MAR</span><span>ABR</span><span>MAI</span><span>JUN</span></div>
-            </div>
-            <div className="activity-panel">
-              <div className="panel-label"><strong>Atividade</strong><ChevronRight /></div>
-              <div className="activity"><span><Fuel /></span><p><strong>Abastecimento aprovado</strong><small>Veículo 042 · agora</small></p></div>
-              <div className="activity"><span><Check /></span><p><strong>Agendamento concluído</strong><small>Veículo 018 · 12 min</small></p></div>
-              <div className="activity"><span><Wrench /></span><p><strong>Revisão programada</strong><small>Veículo 096 · 35 min</small></p></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="floating-chip floating-chip-top"><ShieldCheck /><span><strong>100%</strong> rastreável</span></div>
-      <div className="floating-chip floating-chip-bottom"><CheckCircle2 /><span><strong>Controle</strong> em tempo real</span></div>
+    <div className="dashboard-shell dashboard-image-shell" aria-label="Prévia do painel de gestão do Frotas ON">
+      <img
+        src="/images/dashboard_frotason.png"
+        alt="Dashboard do Frotas ON com indicadores de consumo, quilometragem, abastecimentos e manutenções"
+        className="dashboard-image"
+      />
     </div>
   );
 }
@@ -234,7 +198,9 @@ function Index() {
           <div className="container hero-grid">
             <div className="hero-copy animate-fade-in">
               <span className="hero-kicker"><Landmark /> Tecnologia para a gestão pública municipal</span>
-              <h1>Frotas <span>ON</span></h1>
+              <h1 className="hero-logo-title">
+                <img src="/images/logo_frotason.png" alt="Frotas ON" />
+              </h1>
               <h2>Sistema de Gerenciamento de Frotas Públicas</h2>
               <p className="hero-lead">Toda a gestão da frota pública em um único sistema.</p>
               <p className="hero-detail">Veículos, agendamentos, despesas, abastecimentos e manutenções organizados para sua prefeitura.</p>
