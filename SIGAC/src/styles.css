@@ -1213,3 +1213,127 @@ p { margin: 0; }
 @media (max-width: 860px) {
   .hero-visual { order: 2; }
 }
+
+/* CTA com formulário */
+.cta-grid {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .cta-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cta-copy h2 {
+  margin: 0.75rem 0 1rem;
+}
+
+.cta-copy p {
+  max-width: 32rem;
+}
+
+.cta-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cta-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.cta-list svg {
+  flex-shrink: 0;
+  color: var(--color-accent, #38bdf8);
+}
+
+/* Formulário */
+.contact-form {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact-form label span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.contact-form input {
+  height: 3rem;
+  padding: 0 0.85rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.15);
+  color: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.contact-form input:focus {
+  border-color: var(--color-accent, #38bdf8);
+}
+
+.contact-form input::placeholder {
+  opacity: 0.5;
+}
+
+.contact-form small {
+  font-size: 0.72rem;
+  opacity: 0.65;
+}
+
+/* Sucesso */
+.form-success {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  padding: 1.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  text-align: left;
+}
+
+.form-success svg {
+  color: var(--color-accent, #38bdf8);
+}
+
+.form-success strong {
+  font-size: 1.1rem;
+}
+
+.form-success p {
+  margin: 0;
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+/* Botão variante light (se ainda não existir) */
+.btn-light {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.btn-light:hover {
+  background: rgba(255, 255, 255, 0.9);
+}

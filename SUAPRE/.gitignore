@@ -1,11 +1,20 @@
 node_modules/
 dist/
 .vite/
+.tanstack/
 .env
 .env.*
 !.env.example
+
+# Local tooling
 .vscode/
 .idea/
 *.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
 .DS_Store
 Thumbs.db

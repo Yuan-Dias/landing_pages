@@ -4,3 +4,7 @@ export const MOCKUPS = {
   dashboard: "/images/monitoramento_gardian.png",
   riskMap: "/images/zonas_gardian.png",
 } as const;
+
+
+export const WHATSAPP_NUMBER = "5573999321323";
+export const CONTACT_EMAIL = "contato@gardian.com.br";

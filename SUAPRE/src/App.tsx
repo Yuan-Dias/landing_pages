@@ -1,9 +1,15 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type ChangeEvent, type FormEvent } from "react";
 import {
   ArrowRight, BarChart3, Boxes, Check, CheckCircle2, ChevronDown, ClipboardList,
   FileCheck2, FileText, Landmark, Menu, Network, PackageCheck, ReceiptText,
   ScrollText, ShieldCheck, ShoppingCart, Timer, Workflow, X, type LucideIcon,
 } from "lucide-react";
+
+/* ---------------------------------------------------------
+   CONFIGURAÇÃO DE CONTATO
+   --------------------------------------------------------- */
+const WHATSAPP_NUMBER = "5573999321323";
+const CONTACT_EMAIL = "contato@suapre.com.br";
 
 const challenges = [
   [Network, "Baixa integração entre setores", "Secretarias, compras, licitação e financeiro precisam trabalhar com a mesma informação."],
@@ -61,12 +67,35 @@ const flowSteps: [string, string][] = [
   ["Almoxarifado", "Recebimento, estoque, distribuição e histórico dos materiais."],
 ];
 
-function Button({ children, href = "#contato", light = false }: { children: ReactNode; href?: string; light?: boolean }) {
+function Button({
+  children,
+  href,
+  light = false,
+  type = "button",
+  onClick,
+}: {
+  children: ReactNode;
+  href?: string;
+  light?: boolean;
+  type?: "button" | "submit";
+  onClick?: () => void;
+}) {
+  const classes = `button ${light ? "button-light" : ""}`.trim();
+
+  if (href) {
+    return (
+      <a className={classes} href={href} onClick={onClick}>
+        {children}
+        <ArrowRight size={16} />
+      </a>
+    );
+  }
+
   return (
-    <a className={`button ${light ? "button-light" : ""}`} href={href}>
+    <button className={classes} type={type} onClick={onClick}>
       {children}
       <ArrowRight size={16} />
-    </a>
+    </button>
   );
 }
 
@@ -116,6 +145,92 @@ function PrintSlot({ label, title, src }: { label: string; title: string; src?: 
   );
 }
 
+function ContactForm() {
+  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", organization: "" });
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const message =
+      `Olá! Gostaria de solicitar uma demonstração do SUAPRE.\n\n` +
+      `*Nome:* ${form.name}\n` +
+      `*E-mail:* ${form.email}\n` +
+      `*Cidade/Órgão:* ${form.organization}`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+    setSent(true);
+  };
+
+  if (sent) {
+    return (
+      <div className="form-success" role="status">
+        <CheckCircle2 size={28} />
+        <strong>Solicitação encaminhada!</strong>
+        <p>
+          Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu,
+          verifique o bloqueador de pop-ups.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="contact-form" onSubmit={handleSubmit}>
+      <label>
+        <span>Nome</span>
+        <input
+          required
+          name="name"
+          autoComplete="name"
+          placeholder="Seu nome"
+          value={form.name}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        <span>E-mail institucional</span>
+        <input
+          required
+          name="email"
+          type="email"
+          autoComplete="email"
+          placeholder="nome@orgao.gov.br"
+          value={form.email}
+          onChange={handleChange}
+        />
+      </label>
+
+      <label>
+        <span>Cidade / órgão</span>
+        <input
+          required
+          name="organization"
+          autoComplete="organization"
+          placeholder="Prefeitura, secretaria ou autarquia"
+          value={form.organization}
+          onChange={handleChange}
+        />
+      </label>
+
+      <Button type="submit" light>
+        Enviar pelo WhatsApp
+      </Button>
+
+      <small>
+        Ao enviar, você será redirecionado ao WhatsApp com a mensagem preenchida.
+      </small>
+    </form>
+  );
+}
+
 function App() {
   const [open, setOpen] = useState(false);
 
@@ -134,16 +249,17 @@ function App() {
             className="menu-toggle"
             onClick={() => setOpen(!open)}
             aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
           >
             {open ? <X /> : <Menu />}
           </button>
         </div>
         {open && (
-          <nav className="mobile-nav">
+          <nav className="mobile-nav" aria-label="Navegação móvel">
             {navItems.map(([label, href]) => (
               <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
             ))}
-            <Button>Solicitar demonstração</Button>
+            <Button onClick={() => setOpen(false)}>Solicitar demonstração</Button>
           </nav>
         )}
       </header>
@@ -160,7 +276,7 @@ function App() {
                 Do planejamento ao almoxarifado, o SUAPRE organiza processos, documentos, contratos e recursos em um único sistema.
               </p>
               <div className="hero-actions">
-                <Button light>Conheça o SUAPRE</Button>
+                <Button light href="#contato">Conheça o SUAPRE</Button>
                 <a className="text-link" href="#funcionalidades">
                   Ver funcionalidades <ChevronDown size={16} />
                 </a>
@@ -170,10 +286,10 @@ function App() {
               </div>
             </div>
             <PrintSlot
-  label="VISÃO GERAL"
-  title="Painel de contratações"
-  src="/images/contratos_suapre.png"
-/>
+              label="VISÃO GERAL"
+              title="Painel de contratações"
+              src="/images/contratos_suapre.png"
+            />
           </div>
         </section>
 
@@ -212,10 +328,10 @@ function App() {
               </div>
             </div>
             <PrintSlot
-  label="MÓDULOS INTEGRADOS"
-  title="Operação conectada"
-  src="/images/relatorios_suapre.png"
-/>
+              label="MÓDULOS INTEGRADOS"
+              title="Operação conectada"
+              src="/images/relatorios_suapre.png"
+            />
           </div>
         </section>
 
@@ -329,13 +445,19 @@ function App() {
         </section>
 
         <section id="contato" className="cta">
-          <div className="container cta-inner">
-            <div>
+          <div className="container cta-grid">
+            <div className="cta-copy">
               <span className="kicker">Uma gestão mais integrada começa agora</span>
               <h2>Leve mais controle para as contratações do seu município.</h2>
               <p>Conheça o SUAPRE e veja como conectar planejamento, processos, contratos e execução.</p>
+              <ul className="cta-list">
+                <li><CheckCircle2 size={16} /> Conheça os recursos aplicados à rotina do seu órgão</li>
+                <li><CheckCircle2 size={16} /> Tire dúvidas com uma equipe especializada</li>
+                <li><CheckCircle2 size={16} /> Descubra como ganhar celeridade nas contratações</li>
+              </ul>
             </div>
-            <Button light>Solicitar demonstração</Button>
+
+            <ContactForm />
           </div>
         </section>
       </main>
@@ -352,7 +474,7 @@ function App() {
           </div>
           <div>
             <h3>Contato</h3>
-            <a href="mailto:contato@suapre.com.br">contato@suapre.com.br</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
             <span>Atendimento para órgãos públicos</span>
             <a href="#contato">Solicitar demonstração</a>
           </div>
