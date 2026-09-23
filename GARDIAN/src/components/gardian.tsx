@@ -80,8 +80,10 @@ export function Header() {
         </button>
         <nav id="main-navigation" className={cx("absolute inset-x-4 top-[calc(100%-0.25rem)] rounded-lg border border-primary-foreground/15 bg-primary p-3 shadow-xl md:static md:flex md:items-center md:gap-6 md:border-0 md:bg-transparent md:p-0 md:shadow-none", menuOpen ? "block" : "hidden md:flex")}>
           <a href="#desafios" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-primary-foreground/10 hover:text-live md:px-0 md:py-2 md:hover:bg-transparent">Desafios</a>
+          <a href="#sobre" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-primary-foreground/10 hover:text-live md:px-0 md:py-2 md:hover:bg-transparent">Sobre</a>
           <a href="#funcionalidades" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-primary-foreground/10 hover:text-live md:px-0 md:py-2 md:hover:bg-transparent">Funcionalidades</a>
           <a href="#vantagens" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-primary-foreground/10 hover:text-live md:px-0 md:py-2 md:hover:bg-transparent">Vantagens</a>
+          <a href="#contato" className="block rounded-md px-3 py-3 text-sm font-semibold hover:bg-primary-foreground/10 hover:text-live md:px-0 md:py-2 md:hover:bg-transparent">Contato</a>
           <Button asChild size="default" className="mt-2 w-full bg-live text-primary hover:bg-live/90 md:mt-0 md:w-auto"><a href="#contato" onClick={() => setMenuOpen(false)}>Solicitar demonstração</a></Button>
         </nav>
       </div>

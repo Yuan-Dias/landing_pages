@@ -1,0 +1,1 @@
+export { Sigac, default } from "./Sigac";
