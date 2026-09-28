@@ -3,7 +3,6 @@ import {
   AlertCircle,
   ArrowRight,
   BarChart3,
-  Building2,
   CheckCircle2,
   ChevronDown,
   ClipboardList,
@@ -49,31 +48,11 @@ const navItems = [
 ];
 
 const challenges: [LucideIcon, string, string][] = [
-  [
-    FileX,
-    "Acesso difícil à informação",
-    "Dificuldade de acesso às informações dos requerimentos.",
-  ],
-  [
-    BarChart3,
-    "Ausência de indicadores",
-    "Falta de indicadores ambientais na fiscalização e no licenciamento.",
-  ],
-  [
-    Timer,
-    "Acompanhamento comprometido",
-    "Complicações no acompanhamento dos processos e de suas pendências.",
-  ],
-  [
-    AlertCircle,
-    "Renovações esquecidas",
-    "Falta de proatividade na renovação das licenças.",
-  ],
-  [
-    Printer,
-    "Uso excessivo de papel",
-    "Processos físicos tornam o trâmite lento e sujeito a falhas.",
-  ],
+  [FileX, "Acesso difícil à informação", "Dificuldade de acesso às informações dos requerimentos."],
+  [BarChart3, "Ausência de indicadores", "Falta de indicadores ambientais na fiscalização e no licenciamento."],
+  [Timer, "Acompanhamento comprometido", "Complicações no acompanhamento dos processos e de suas pendências."],
+  [AlertCircle, "Renovações esquecidas", "Falta de proatividade na renovação das licenças."],
+  [Printer, "Uso excessivo de papel", "Processos físicos tornam o trâmite lento e sujeito a falhas."],
 ];
 
 const advantages = [
@@ -90,36 +69,12 @@ const advantages = [
 ];
 
 const onlineFeatures: [LucideIcon, string, string][] = [
-  [
-    BarChart3,
-    "Dashboards em tempo real",
-    "Indicadores atualizados conforme o processo avança.",
-  ],
-  [
-    MapPin,
-    "Mapa dos processos",
-    "Localização geográfica dos requerimentos e vistorias.",
-  ],
-  [
-    Activity,
-    "Movimento registrado",
-    "Histórico completo para facilitar a gestão.",
-  ],
-  [
-    FileText,
-    "Emissão de documentos",
-    "Licenças, notificações e ofícios gerados pelo sistema.",
-  ],
-  [
-    ClipboardList,
-    "Controle de processos",
-    "Triagem, pendências e andamento em um só painel.",
-  ],
-  [
-    Database,
-    "Dados centralizados",
-    "Uma base única para todas as secretarias e consórcios.",
-  ],
+  [BarChart3, "Dashboards em tempo real", "Indicadores atualizados conforme o processo avança."],
+  [MapPin, "Mapa dos processos", "Localização geográfica dos requerimentos e vistorias."],
+  [Activity, "Movimento registrado", "Histórico completo para facilitar a gestão."],
+  [FileText, "Emissão de documentos", "Licenças, notificações e ofícios gerados pelo sistema."],
+  [ClipboardList, "Controle de processos", "Triagem, pendências e andamento em um só painel."],
+  [Database, "Dados centralizados", "Uma base única para todas as secretarias e consórcios."],
 ];
 
 /* ---------------------------------------------------------
@@ -307,28 +262,18 @@ export function Sigac() {
 
       <header className="site-header">
         <div className="container header-inner">
-          <a
-            className="brand"
-            href="#inicio"
-            aria-label="SIGAC início"
-          >
+          <a className="brand" href="#inicio" aria-label="SIGAC início">
             <img src="/images/icone_sigac.png" alt="SIGAC" />
           </a>
 
-          <nav
-            className="nav"
-            aria-label="Navegação principal"
-          >
+          <nav className="nav" aria-label="Navegação principal">
             {navItems.map(([label, href]) => (
               <a key={href} href={href}>
                 {label}
               </a>
             ))}
 
-            <Button
-              variant="outline"
-              href="#contato"
-            >
+            <Button variant="outline" href="#contato">
               Falar com a equipe
             </Button>
           </nav>
@@ -336,31 +281,18 @@ export function Sigac() {
           <button
             className="menu-toggle"
             onClick={() => setOpen(!open)}
-            aria-label={
-              open ? "Fechar menu" : "Abrir menu"
-            }
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             type="button"
           >
-            {open ? (
-              <X size={22} />
-            ) : (
-              <Menu size={22} />
-            )}
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
         {open && (
-          <nav
-            className="mobile-nav"
-            aria-label="Navegação móvel"
-          >
+          <nav className="mobile-nav" aria-label="Navegação móvel">
             {navItems.map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                onClick={() => setOpen(false)}
-              >
+              <a key={href} href={href} onClick={() => setOpen(false)}>
                 {label}
               </a>
             ))}
@@ -383,10 +315,7 @@ export function Sigac() {
       <main>
         {/* HERO */}
 
-        <section
-          id="inicio"
-          className="hero"
-        >
+        <section id="inicio" className="hero">
           <div className="container hero-grid">
             <div className="hero-copy">
               <span className="tag">
@@ -407,14 +336,9 @@ export function Sigac() {
               </p>
 
               <div className="hero-actions">
-                <Button href="#contato">
-                  Solicitar demonstração
-                </Button>
+                <Button href="#contato">Solicitar demonstração</Button>
 
-                <a
-                  className="text-link"
-                  href="#sobre"
-                >
+                <a className="text-link" href="#sobre">
                   Conhecer o SIGAC
                   <ChevronDown size={16} />
                 </a>
@@ -441,28 +365,19 @@ export function Sigac() {
                 />
               </div>
 
-              <span className="hero-visual-caption">
-                Painel do SIGAC
-              </span>
+              <span className="hero-visual-caption">Painel do SIGAC</span>
             </div>
           </div>
         </section>
 
         {/* DESAFIOS */}
 
-        <section
-          id="desafios"
-          className="section features"
-        >
+        <section id="desafios" className="section features">
           <div className="container">
             <div className="section-title">
-              <span className="eyebrow">
-                Como surgiu a necessidade
-              </span>
+              <span className="eyebrow">Como surgiu a necessidade</span>
 
-              <h2>
-                Um cenário que pedia mudança
-              </h2>
+              <h2>Um cenário que pedia mudança</h2>
 
               <p>
                 A gestão ambiental pública esbarrava em processos dispersos,
@@ -472,35 +387,21 @@ export function Sigac() {
             </div>
 
             <div className="feature-grid">
-              {challenges.map(
-                ([Icon, title, text]) => (
-                  <IconCard
-                    key={title}
-                    icon={Icon}
-                    title={title}
-                    text={text}
-                  />
-                ),
-              )}
+              {challenges.map(([Icon, title, text]) => (
+                <IconCard key={title} icon={Icon} title={title} text={text} />
+              ))}
             </div>
           </div>
         </section>
 
         {/* SOBRE */}
 
-        <section
-          id="sobre"
-          className="section"
-        >
+        <section id="sobre" className="section">
           <div className="container about-grid">
             <div>
-              <span className="eyebrow">
-                O que é o SIGAC
-              </span>
+              <span className="eyebrow">O que é o SIGAC</span>
 
-              <h2>
-                Do protocolo do cidadão à licença emitida.
-              </h2>
+              <h2>Do protocolo do cidadão à licença emitida.</h2>
 
               <p className="body-copy">
                 O SIGAC acompanha todo o processo de licenciamento ambiental,
@@ -535,9 +436,7 @@ export function Sigac() {
             <div className="card">
               <BarChart3 size={28} />
 
-              <h3>
-                Visão consolidada do processo
-              </h3>
+              <h3>Visão consolidada do processo</h3>
 
               <p>
                 Requerente e secretaria compartilham o mesmo painel: status,
@@ -549,19 +448,12 @@ export function Sigac() {
 
         {/* VANTAGENS */}
 
-        <section
-          id="vantagens"
-          className="section features"
-        >
+        <section id="vantagens" className="section features">
           <div className="container">
             <div className="section-title">
-              <span className="eyebrow">
-                Vantagens do SIGAC
-              </span>
+              <span className="eyebrow">Vantagens do SIGAC</span>
 
-              <h2>
-                Mais controle, celeridade e integração
-              </h2>
+              <h2>Mais controle, celeridade e integração</h2>
 
               <p>
                 Um conjunto de recursos pensado para a rotina real de
@@ -569,10 +461,7 @@ export function Sigac() {
               </p>
             </div>
 
-            <div
-              className="module-pills"
-              style={{ justifyContent: "center" }}
-            >
+            <div className="module-pills" style={{ justifyContent: "center" }}>
               {advantages.map((item) => (
                 <span key={item}>
                   <CheckCircle2 size={14} />
@@ -585,19 +474,12 @@ export function Sigac() {
 
         {/* SISTEMA 100% ONLINE */}
 
-        <section
-          id="recursos"
-          className="section"
-        >
+        <section id="recursos" className="section">
           <div className="container">
             <div className="section-title">
-              <span className="eyebrow">
-                Sistema 100% online
-              </span>
+              <span className="eyebrow">Sistema 100% online</span>
 
-              <h2>
-                Informação viva, disponível a qualquer momento
-              </h2>
+              <h2>Informação viva, disponível a qualquer momento</h2>
 
               <p>
                 Sem instalação, sem servidor local. Tudo o que a equipe
@@ -606,16 +488,9 @@ export function Sigac() {
             </div>
 
             <div className="feature-grid">
-              {onlineFeatures.map(
-                ([Icon, title, text]) => (
-                  <IconCard
-                    key={title}
-                    icon={Icon}
-                    title={title}
-                    text={text}
-                  />
-                ),
-              )}
+              {onlineFeatures.map(([Icon, title, text]) => (
+                <IconCard key={title} icon={Icon} title={title} text={text} />
+              ))}
             </div>
           </div>
         </section>
@@ -625,13 +500,9 @@ export function Sigac() {
         <section className="section features">
           <div className="container about-grid">
             <div>
-              <span className="eyebrow">
-                Mensageria e suporte
-              </span>
+              <span className="eyebrow">Mensageria e suporte</span>
 
-              <h2>
-                Comunicação direta pelo WhatsApp.
-              </h2>
+              <h2>Comunicação direta pelo WhatsApp.</h2>
 
               <p className="body-copy">
                 Para facilitar a comunicação, o sistema conta com notificação
@@ -662,9 +533,7 @@ export function Sigac() {
             <div className="card">
               <MessageCircle size={28} />
 
-              <h3>
-                IAra no WhatsApp
-              </h3>
+              <h3>IAra no WhatsApp</h3>
 
               <p>
                 Orientação técnica para o cidadão, resposta rápida para a
@@ -679,13 +548,9 @@ export function Sigac() {
         <section className="section modules">
           <div className="container">
             <div className="section-title">
-              <span className="eyebrow">
-                Aplicativo para técnicos
-              </span>
+              <span className="eyebrow">Aplicativo para técnicos</span>
 
-              <h2>
-                Funcionamento offline em campo.
-              </h2>
+              <h2>Funcionamento offline em campo.</h2>
 
               <p>
                 Muitas vezes, os técnicos atuam em áreas que não têm sinal de
@@ -698,9 +563,7 @@ export function Sigac() {
               <div>
                 <WifiOff size={28} />
 
-                <h3>
-                  Vistorias sem sinal
-                </h3>
+                <h3>Vistorias sem sinal</h3>
 
                 <p>
                   Registre fiscalizações, fotos e observações mesmo em áreas
@@ -711,9 +574,7 @@ export function Sigac() {
               <div>
                 <Smartphone size={28} />
 
-                <h3>
-                  App dedicado ao técnico
-                </h3>
+                <h3>App dedicado ao técnico</h3>
 
                 <p>
                   Interface pensada para o trabalho de campo, com os dados do
@@ -724,9 +585,7 @@ export function Sigac() {
               <div>
                 <ShieldCheck size={28} />
 
-                <h3>
-                  Rastreabilidade garantida
-                </h3>
+                <h3>Rastreabilidade garantida</h3>
 
                 <p>
                   Cada vistoria registrada em campo fica vinculada ao processo
@@ -737,16 +596,12 @@ export function Sigac() {
           </div>
         </section>
 
-        {/* CTA + FORMULÁRIO */}
+        {/* CTA + FORMULÁRIO — mesma estrutura do SUAPRE */}
 
-        <section
-          id="contato"
-          className="cta"
-        >
+        <section id="contato" className="cta">
           <div className="container cta-grid">
             <div className="cta-copy">
-              <span className="tag">
-                <Building2 size={14} />
+              <span className="kicker">
                 Para prefeituras e consórcios
               </span>
 
@@ -790,10 +645,7 @@ export function Sigac() {
         <div className="container footer-grid">
           <div className="footer-brand">
             <div className="brand">
-              <img
-                src="/images/icone_sigac.png"
-                alt="SIGAC"
-              />
+              <img src="/images/icone_sigac.png" alt="SIGAC" />
             </div>
 
             <p>
@@ -815,13 +667,9 @@ export function Sigac() {
           <div>
             <h4>Contato</h4>
 
-            <a href={`mailto:${CONTACT_EMAIL}`}>
-              {CONTACT_EMAIL}
-            </a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
 
-            <span>
-              Atendimento a órgãos públicos
-            </span>
+            <span>Atendimento a órgãos públicos</span>
           </div>
 
           <div>
@@ -838,13 +686,9 @@ export function Sigac() {
         </div>
 
         <div className="container footer-bottom">
-          <span>
-            © 2026 SIGAC. Todos os direitos reservados.
-          </span>
+          <span>© 2026 SIGAC. Todos os direitos reservados.</span>
 
-          <span>
-            Gestão ambiental compartilhada.
-          </span>
+          <span>Gestão ambiental compartilhada.</span>
         </div>
       </footer>
     </div>

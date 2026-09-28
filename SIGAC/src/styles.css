@@ -2,6 +2,7 @@
    SIGAC — Sistema Integrado de Gestão Ambiental Compartilhada
    ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 /* ---------------------------------------------------------
@@ -42,7 +43,6 @@
   --radius-lg: 1.125rem;
   --radius-xl: 1.5rem;
 
-  /* Escala de sombras em camadas */
   --shadow-1: 0 1px 2px rgba(10, 31, 21, 0.05),
               0 1px 3px rgba(10, 31, 21, 0.04);
   --shadow-2: 0 4px 12px rgba(10, 31, 21, 0.06),
@@ -63,7 +63,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  scroll-padding-top: 90px;      /* compensa o header sticky em âncoras */
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -208,6 +208,15 @@ p { margin: 0; }
   background: color-mix(in srgb, var(--color-primary) 8%, transparent);
 }
 
+.btn-light {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.btn-light:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 /* ---------------------------------------------------------
    5. HEADER
    --------------------------------------------------------- */
@@ -246,7 +255,6 @@ p { margin: 0; }
 }
 
 .brand svg { color: var(--color-accent); }
-
 .brand img { height: 34px; width: auto; }
 
 .nav {
@@ -684,74 +692,215 @@ p { margin: 0; }
   line-height: 1.7;
 }
 
-/* ---------------------------------------------------------
-   12. CTA
-   --------------------------------------------------------- */
+/* =========================================================
+   12. CTA + FORMULÁRIO
+   Mesma estrutura, formato, posição e FONTE do SUAPRE.
+   Paleta SIGAC.
+   ========================================================= */
+
 .cta {
-  position: relative;
-  padding: 96px 0;
+  padding: 82px 0;
   color: #ffffff;
-  background:
-    radial-gradient(700px 400px at 100% 0%,
-      rgba(16, 185, 129, 0.28), transparent 60%),
-    linear-gradient(120deg, #0a1f15 0%, #0c6b45 100%);
-  overflow: hidden;
+  background: linear-gradient(115deg, #0a1f15, #0c6b45);
 }
 
-.cta::after {
-  content: "";
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(110, 231, 183, 0.18), transparent 70%);
-  pointer-events: none;
+/* Todo texto da seção de contato usa Inter (igual SUAPRE) */
+.cta,
+.cta h2,
+.cta p,
+.cta li,
+.cta span,
+.cta small,
+.cta strong,
+.cta .kicker,
+.cta .cta-list,
+.cta .contact-form,
+.cta .contact-form label,
+.cta .contact-form label span,
+.cta .contact-form input,
+.cta .contact-form small,
+.cta .contact-form .btn,
+.cta .form-success,
+.cta .form-success strong,
+.cta .form-success p {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-.cta-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
+.cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 500px);
   align-items: center;
-  justify-content: space-between;
-  gap: 48px;
+  gap: 70px;
 }
 
-.cta .tag {
-  background: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.18);
+.cta-copy {
+  min-width: 0;
+}
+
+.cta .kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6ee7b7;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .cta h2 {
-  margin-top: 18px;
+  max-width: 730px;
+  margin: 16px 0 0;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.05em;
   color: #ffffff;
-  max-width: 620px;
-  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
-  line-height: 1.15;
 }
 
 .cta p {
-  margin-top: 16px;
-  color: rgba(255, 255, 255, 0.78);
-  max-width: 560px;
-  font-size: 1.02rem;
+  max-width: 620px;
+  margin: 15px 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
   line-height: 1.65;
 }
 
-.cta .btn-outline {
-  border-color: rgba(255, 255, 255, 0.55);
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(6px);
+.cta-list {
+  display: grid;
+  gap: 10px;
+  margin: 25px 0 0;
+  padding: 0;
+  list-style: none;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.cta .btn-outline:hover {
+.cta-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cta-list svg {
+  flex: none;
+  margin-top: 2px;
+  color: #6ee7b7;
+}
+
+/* Formulário ------------------------------------------------ */
+
+.contact-form {
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.16);
+}
+
+.contact-form label {
+  display: grid;
+  gap: 7px;
+}
+
+.contact-form label span {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-form input {
+  width: 100%;
+  min-height: 48px;
+  height: auto;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 7px;
+  outline: none;
   background: #ffffff;
   color: #0a1f15;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.contact-form input::placeholder {
+  color: #98a2b3;
+}
+
+.contact-form input:focus {
+  border-color: #6ee7b7;
+  box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.28);
+}
+
+/* Botão do formulário: branco com texto verde (igual SUAPRE) ---- */
+
+.contact-form .btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.cta .contact-form .btn-light {
+  background: #ffffff;
+  color: #0c6b45;
   border-color: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.13);
+}
+
+.cta .contact-form .btn-light:hover {
+  background: #e8f4ee;
+  border-color: #e8f4ee;
+  color: #0c6b45;
+}
+
+.contact-form small {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* Estado de sucesso ---------------------------------------- */
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-align: center;
+}
+
+.form-success svg {
+  color: #6ee7b7;
+}
+
+.form-success strong {
+  font-size: 18px;
+}
+
+.form-success p {
+  max-width: 430px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .cta { padding: 82px 0; }
+  .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  .contact-form { padding: 20px; }
+  .cta h2 { font-size: clamp(2rem, 10vw, 3rem); }
 }
 
 /* ---------------------------------------------------------
@@ -956,7 +1105,6 @@ p { margin: 0; }
 }
 
 .field input::placeholder { color: #97a79f; }
-
 .field input:hover { border-color: #c2d2c8; }
 
 .field input:focus {
@@ -1043,12 +1191,9 @@ p { margin: 0; }
    --------------------------------------------------------- */
 @media (max-width: 1024px) {
   .container { width: min(100% - 32px, 900px); }
-
   .feature-grid,
   .module-grid { grid-template-columns: repeat(2, 1fr); }
-
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-
   .about-grid { gap: 40px; }
 }
 
@@ -1056,6 +1201,7 @@ p { margin: 0; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero { padding: 120px 0 80px; }
+  .hero-visual { order: 2; }
 }
 
 @media (max-width: 760px) {
@@ -1080,13 +1226,6 @@ p { margin: 0; }
   .feature-grid,
   .module-grid { grid-template-columns: 1fr; gap: 16px; }
 
-  .cta { padding: 72px 0; }
-  .cta-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 28px;
-  }
-
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -1103,14 +1242,10 @@ p { margin: 0; }
 
 @media (max-width: 480px) {
   .container { width: calc(100% - 24px); }
-
   .btn { height: 46px; font-size: 0.88rem; padding: 0 18px; }
-
   .login-card { padding: 28px 22px 24px; }
   .login-brand span { font-size: 1.25rem; }
-
   .card { padding: 24px; }
-
   .icon-card { padding: 24px 22px; }
 }
 
@@ -1144,7 +1279,6 @@ p { margin: 0; }
   #vantagens .module-pills {
     justify-content: flex-start;
   }
-
   #vantagens .module-pills span {
     font-size: 0.8rem;
     padding: 8px 12px;
@@ -1152,7 +1286,7 @@ p { margin: 0; }
 }
 
 /* ---------------------------------------------------------
-   19. HERO — visual com dashboard
+   20. HERO — visual com dashboard
    --------------------------------------------------------- */
 .hero-visual {
   position: relative;
@@ -1208,132 +1342,4 @@ p { margin: 0; }
   font-size: 0.78rem;
   color: var(--color-muted-foreground);
   letter-spacing: 0.02em;
-}
-
-@media (max-width: 860px) {
-  .hero-visual { order: 2; }
-}
-
-/* CTA com formulário */
-.cta-grid {
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 900px) {
-  .cta-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.cta-copy h2 {
-  margin: 0.75rem 0 1rem;
-}
-
-.cta-copy p {
-  max-width: 32rem;
-}
-
-.cta-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.cta-list li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.cta-list svg {
-  flex-shrink: 0;
-  color: var(--color-accent, #38bdf8);
-}
-
-/* Formulário */
-.contact-form {
-  display: grid;
-  gap: 0.75rem;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.contact-form label {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.contact-form label span {
-  font-size: 0.75rem;
-  font-weight: 600;
-  opacity: 0.85;
-}
-
-.contact-form input {
-  height: 3rem;
-  padding: 0 0.85rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(0, 0, 0, 0.15);
-  color: inherit;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.15s;
-}
-
-.contact-form input:focus {
-  border-color: var(--color-accent, #38bdf8);
-}
-
-.contact-form input::placeholder {
-  opacity: 0.5;
-}
-
-.contact-form small {
-  font-size: 0.72rem;
-  opacity: 0.65;
-}
-
-/* Sucesso */
-.form-success {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: start;
-  padding: 1.75rem;
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.06);
-  text-align: left;
-}
-
-.form-success svg {
-  color: var(--color-accent, #38bdf8);
-}
-
-.form-success strong {
-  font-size: 1.1rem;
-}
-
-.form-success p {
-  margin: 0;
-  opacity: 0.75;
-  font-size: 0.9rem;
-}
-
-/* Botão variante light (se ainda não existir) */
-.btn-light {
-  background: #ffffff;
-  color: #0f172a;
-}
-
-.btn-light:hover {
-  background: rgba(255, 255, 255, 0.9);
 }

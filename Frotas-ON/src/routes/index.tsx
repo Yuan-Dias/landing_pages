@@ -28,11 +28,17 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
+
+/* ---------------------------------------------------------
+   CONFIGURAÇÃO DE CONTATO
+   Troque pelo número oficial do FrotasON (só dígitos, com 55 + DDD).
+   --------------------------------------------------------- */
+const WHATSAPP_NUMBER = "5573999321323";
 
 const navItems = [
   ["Desafios", "#desafios"],
@@ -83,8 +89,8 @@ function Button({ variant = "primary", className = "", children, ...props }: But
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
-    <a href="#inicio" className={`brand ${inverse ? "brand-inverse" : ""}`} aria-label="Frotas ON — início">
-      <img src="/images/logo_frotason.png" alt="Frotas ON" className="brand-logo" />
+    <a href="#inicio" className={`brand ${inverse ? "brand-inverse" : ""}`} aria-label="FrotasON — início">
+      <img src="/images/logo_frotason.png" alt="FrotasON" className="brand-logo" />
     </a>
   );
 }
@@ -105,10 +111,10 @@ function IconBadge({ icon: Icon }: { icon: LucideIcon }) {
 
 function DashboardMockup() {
   return (
-    <div className="dashboard-shell dashboard-image-shell" aria-label="Prévia do painel de gestão do Frotas ON">
+    <div className="dashboard-shell dashboard-image-shell" aria-label="Prévia do painel de gestão do FrotasON">
       <img
         src="/images/dashboard_frotason.png"
-        alt="Dashboard do Frotas ON com indicadores de consumo, quilometragem, abastecimentos e manutenções"
+        alt="Dashboard do FrotasON com indicadores de consumo, quilometragem, abastecimentos e manutenções"
         className="dashboard-image"
       />
     </div>
@@ -134,7 +140,7 @@ function Header() {
           {navItems.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
         <Button href="#contato" className="header-cta">Solicitar demonstração</Button>
-        <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open}>
+        <button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} type="button">
           {open ? <X /> : <Menu />}
         </button>
       </div>
@@ -148,19 +154,24 @@ function Header() {
 
 function ContactForm() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", organization: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    organization: "",
+  });
 
-  const WHATSAPP_NUMBER = "5573999321323";
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setForm((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const message =
-      `Olá! Gostaria de solicitar uma demonstração do Frotas ON.\n\n` +
+      `Olá! Gostaria de solicitar uma demonstração do FrotasON.\n\n` +
       `*Nome:* ${form.name}\n` +
       `*E-mail:* ${form.email}\n` +
       `*Cidade/Órgão:* ${form.organization}`;
@@ -168,20 +179,19 @@ function ContactForm() {
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
     window.open(url, "_blank", "noopener,noreferrer");
+
     setSent(true);
   };
 
   if (sent) {
     return (
       <div className="form-success" role="status">
-        <CheckCircle2 />
-        <div>
-          <strong>Solicitação encaminhada!</strong>
-          <p>
-            Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu,
-            verifique o bloqueador de pop-ups.
-          </p>
-        </div>
+        <CheckCircle2 size={28} />
+        <strong>Solicitação encaminhada!</strong>
+        <p>
+          Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu,
+          verifique o bloqueador de pop-ups.
+        </p>
       </div>
     );
   }
@@ -199,6 +209,7 @@ function ContactForm() {
           onChange={handleChange}
         />
       </label>
+
       <label>
         <span>E-mail institucional</span>
         <input
@@ -206,26 +217,31 @@ function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
-          placeholder="nome@prefeitura.gov.br"
+          placeholder="nome@orgao.gov.br"
           value={form.email}
           onChange={handleChange}
         />
       </label>
+
       <label>
-        <span>Cidade / órgão</span>
+        <span>Organização</span>
         <input
           required
           name="organization"
           autoComplete="organization"
-          placeholder="Prefeitura ou secretaria"
+          placeholder="Prefeitura, secretaria ou autarquia"
           value={form.organization}
           onChange={handleChange}
         />
       </label>
+
       <button type="submit" className="button button-light">
-        Enviar pelo WhatsApp <ArrowRight />
+        Enviar pelo WhatsApp <ArrowRight size={16} />
       </button>
-      <small>Ao enviar, você será redirecionado ao WhatsApp com a mensagem preenchida.</small>
+
+      <small>
+        Ao enviar, você será redirecionado ao WhatsApp com a mensagem preenchida.
+      </small>
     </form>
   );
 }
@@ -256,7 +272,7 @@ function Index() {
             <div className="hero-copy animate-fade-in">
               <span className="hero-kicker"><Landmark /> Tecnologia para a gestão pública municipal</span>
               <h1 className="hero-logo-title">
-                <img src="/images/logo_frotason.png" alt="Frotas ON" />
+                <img src="/images/logo_frotason.png" alt="FrotasON" />
               </h1>
               <h2>Sistema de Gerenciamento de Frotas Públicas</h2>
               <p className="hero-lead">Toda a gestão da frota pública em um único sistema.</p>
@@ -273,7 +289,7 @@ function Index() {
 
         <section id="desafios" className="section challenges-section">
           <div className="container" data-reveal>
-            <SectionTitle eyebrow="Desafios do município" title="Os desafios da gestão de frotas públicas" description="Problemas que o Frotas ON resolve no dia a dia da sua prefeitura." />
+            <SectionTitle eyebrow="Desafios do município" title="Os desafios da gestão de frotas públicas" description="Problemas que o FrotasON resolve no dia a dia da sua prefeitura." />
             <div className="challenge-grid">
               {challenges.map(({ icon: Icon, title, text }, index) => (
                 <article className="challenge-card" key={title} style={{ "--delay": `${index * 60}ms` } as React.CSSProperties}>
@@ -288,8 +304,8 @@ function Index() {
         <section id="sobre" className="section about-section">
           <div className="container about-grid" data-reveal>
             <div className="about-copy">
-              <SectionTitle eyebrow="Gestão integrada" title="O que é o Frotas ON?" align="left" />
-              <p>O <strong>Frotas ON Prefeitura</strong> é um sistema completo para gerenciamento de frotas públicas, desenvolvido para otimizar o controle operacional, financeiro e administrativo dos veículos e equipamentos de uma prefeitura.</p>
+              <SectionTitle eyebrow="Gestão integrada" title="O que é o FrotasON?" align="left" />
+              <p>O <strong>FrotasON Prefeitura</strong> é um sistema completo para gerenciamento de frotas públicas, desenvolvido para otimizar o controle operacional, financeiro e administrativo dos veículos e equipamentos de uma prefeitura.</p>
               <p>A plataforma integra o controle de utilização, abastecimento, despesas, manutenções e histórico da frota, contribuindo para decisões mais seguras, maior eficiência operacional e melhor acompanhamento dos recursos públicos.</p>
               <blockquote><CheckCircle2 />Toda a gestão da frota pública em um único sistema.</blockquote>
             </div>
@@ -314,7 +330,7 @@ function Index() {
 
         <section id="funcionalidades" className="section features-section">
           <div className="container" data-reveal>
-            <SectionTitle eyebrow="Recursos essenciais" title="Funcionalidades do Frotas ON" description="Ferramentas pensadas para simplificar a rotina, fortalecer o controle e melhorar o uso dos recursos públicos." />
+            <SectionTitle eyebrow="Recursos essenciais" title="Funcionalidades do FrotasON" description="Ferramentas pensadas para simplificar a rotina, fortalecer o controle e melhorar o uso dos recursos públicos." />
             <div className="features-grid">
               {features.map(({ icon, title, text }, index) => (
                 <article className={`feature-card ${index === 6 ? "feature-card-wide" : ""}`} key={title}>
@@ -331,8 +347,7 @@ function Index() {
         <section id="vantagens" className="section benefits-section">
           <div className="container" data-reveal>
             <div className="benefits-heading">
-              <SectionTitle eyebrow="Resultados para a gestão" title="Vantagens do Frotas ON" description="Mais eficiência na operação e mais confiança para cuidar do patrimônio do município." align="left" />
-              <div className="benefits-seal"><ShieldCheck /><span><strong>Gestão responsável</strong>Controle e transparência</span></div>
+              <SectionTitle eyebrow="Resultados para a gestão" title="Vantagens do FrotasON" description="Mais eficiência na operação e mais confiança para cuidar do patrimônio do município." align="left" />
             </div>
             <div className="benefits-list">
               {benefits.map(({ icon, title, text }, index) => (
@@ -347,16 +362,17 @@ function Index() {
           </div>
         </section>
 
+        {/* CONTATO — mesmo estilo, formato e posição do SUAPRE ----------- */}
         <section id="contato" className="cta-section">
-          <div className="container cta-grid" data-reveal>
+          <div className="container cta-grid">
             <div className="cta-copy">
-              <span className="cta-kicker"><span /> Demonstração personalizada</span>
+              <span className="kicker">Demonstração personalizada</span>
               <h2>Pronto para transformar a gestão da frota pública?</h2>
-              <p>Solicite uma demonstração e veja o Frotas ON em ação.</p>
-              <ul>
-                <li><Check /> Conheça os recursos aplicados à rotina do seu município</li>
-                <li><Check /> Tire dúvidas com uma equipe especializada</li>
-                <li><Check /> Descubra como ganhar controle e eficiência</li>
+              <p>Solicite uma demonstração e veja o FrotasON em ação.</p>
+              <ul className="cta-list">
+                <li><Check size={16} /> Conheça os recursos aplicados à rotina do seu município</li>
+                <li><Check size={16} /> Tire dúvidas com uma equipe especializada</li>
+                <li><Check size={16} /> Descubra como ganhar controle e eficiência</li>
               </ul>
             </div>
             <ContactForm />
@@ -369,9 +385,9 @@ function Index() {
           <div className="footer-brand"><Brand inverse /><p>Gestão inteligente, eficiente e transparente para a frota do seu município.</p></div>
           <div><h3>Links rápidos</h3>{navItems.slice(0, 4).map(([label, href]) => <a key={href} href={href}>{label}</a>)}</div>
           <div><h3>Contato</h3><a href="mailto:contato@frotason.com.br"><Mail /> contato@frotason.com.br</a><span><MapPin /> Atendimento em todo o Brasil</span><a href="#contato"><ArrowRight /> Solicitar contato</a></div>
-          <div><h3>Frotas ON</h3><div className="public-seal"><Landmark /><span><strong>Sistema para Prefeituras</strong>Tecnologia para a gestão pública</span></div><div className="social-links"><a href="#inicio" aria-label="LinkedIn"><Linkedin /></a><a href="#inicio" aria-label="Instagram"><Instagram /></a><a href="#inicio" aria-label="Facebook"><Facebook /></a></div></div>
+          <div><h3>FrotasON</h3><div className="public-seal"><Landmark /><span><strong>Sistema para Prefeituras</strong>Tecnologia para a gestão pública</span></div><div className="social-links"><a href="#inicio" aria-label="LinkedIn"><Linkedin /></a><a href="#inicio" aria-label="Instagram"><Instagram /></a><a href="#inicio" aria-label="Facebook"><Facebook /></a></div></div>
         </div>
-        <div className="container footer-bottom"><span>© 2026 Frotas ON. Todos os direitos reservados.</span><span>Eficiência pública que se move.</span></div>
+        <div className="container footer-bottom"><span>© 2026 FrotasON. Todos os direitos reservados.</span><span>Eficiência pública que se move.</span></div>
       </footer>
     </div>
   );
