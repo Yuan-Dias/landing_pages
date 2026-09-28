@@ -503,7 +503,6 @@ function Index() {
                         aria-label={label as string}
                         className="grid size-9 place-items-center rounded-full bg-primary-foreground/10 transition-colors hover:bg-primary-foreground/20"
                     >
-                      {/* @ts-expect-error — ícone dinâmico */}
                       <Icon size={16} aria-hidden="true" />
                     </a>
                 ))}

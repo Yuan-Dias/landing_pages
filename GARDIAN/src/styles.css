@@ -26,14 +26,45 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
-  body { margin: 0; min-width: 320px; background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); text-rendering: optimizeLegibility; }
-  h1, h2, h3 { font-family: "Public Sans", var(--font-sans); }
-  label, .eyebrow, [class*="uppercase"] { font-family: "JetBrains Mono", ui-monospace, monospace; }
-  ::selection { background: var(--color-accent); color: var(--color-accent-foreground); }
-  :focus-visible { outline: 3px solid var(--color-live); outline-offset: 3px; }
-  a, button, input { -webkit-tap-highlight-color: transparent; }
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: "Public Sans", var(--font-sans);
+  }
+
+  label, .eyebrow, [class*="uppercase"] {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-live);
+    outline-offset: 3px;
+  }
+
+  a, button, input {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]) {
     appearance: none;
     background: var(--color-card);
@@ -43,18 +74,25 @@
     min-width: 0;
     transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
   }
+
   input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):hover {
     border-color: var(--color-live);
   }
+
   input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):focus {
     border-color: var(--color-live);
     box-shadow: 0 0 0 4px oklch(0.71 0.13 252 / 28%);
     outline: none;
   }
+
   input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):user-invalid {
     border-color: var(--color-critical);
   }
-  input::placeholder { color: var(--color-muted-foreground); opacity: 0.8; }
+
+  input::placeholder {
+    color: var(--color-muted-foreground);
+    opacity: 0.8;
+  }
 }
 
 .radar-grid {
@@ -63,5 +101,7 @@
 }
 
 @media (max-width: 640px) {
-  .radar-grid { background-size: 24px 24px; }
+  .radar-grid {
+    background-size: 24px 24px;
+  }
 }
