@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Sigac } from "@/components/sigac";
+import LandingPage from "@/pages/LandingPage";
 
 export const Route = createFileRoute("/")({
-  component: Sigac,
+  component: LandingPage,
 });
